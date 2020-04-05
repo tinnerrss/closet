@@ -52,11 +52,11 @@ class Outfit(db.Model):
     __tablename__ = 'outfits'
 
     id = db.Column(db.Integer, primary_key=True)
-    occassion = db.Column(db.String(150))
+    occasion = db.Column(db.String(150))
     
 
     def __repr__(self):
-        return f"👗Item(id={self.id}, occassion='{self.occassion})'👗"
+        return f"👗Item(id={self.id}, occasion='{self.occasion})'👗"
 
 
 class Date(db.Model):
@@ -66,7 +66,7 @@ class Date(db.Model):
     day = db.Column(db.String(150))
 
     def __repr__(self):
-        return f"📅Item(id={self.id}, occassion='{self.occassion})'📅"
+        return f"📅Item(id={self.id}, day='{self.day})'📅"
 
 
 
