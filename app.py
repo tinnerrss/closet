@@ -1,7 +1,16 @@
-from models import app, User, Makeup, Brand
+from models import app, User, Item, Outfit
 from flask import jsonify, request
 from crud.item_crud import get_all_items, create_item, get_item, update_item
 from crud.outfit_crud import get_all_outfits, create_outfit, get_outfit, update_outfit
+
+
+
+@app.route('/')
+def home():
+  first_user = User.query.first()
+  print(f'🎀{first_user}')
+  return jsonify(user=first_user.as_dict())
+
 
 @app.route('/items', methods=['GET', 'POST'])
 def item_index_create():
@@ -29,7 +38,7 @@ def item_show_update_delete(id):
                 id=id,
                 name=request.form['name'],
                 category=request.form['category'],
-                available=request.form['available']
+                available=request.form['available'],
                 photo=request.form['photo']
             )
         except Exception as error:

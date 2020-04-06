@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Nav from './content/components/Nav';
+import Homepage from './content/pages/Homepage';
 
 function App() {
 
   return (
     <div className="App">
-    hello world
+      
+      <Nav />
+      <Homepage />
     </div>
   );
 }

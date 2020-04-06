@@ -2,7 +2,7 @@ from flask import jsonify, redirect
 from models import db, Outfit
 
 
-def get_all_items():
+def get_all_outfits():
     try:
         all_outfits = Outfit.query.all()
         result = [outfit.as_dict() for outfit in all_outfits]

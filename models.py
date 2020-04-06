@@ -21,6 +21,9 @@ class User(db.Model):
     def __repr__(self):
         return f"💁‍♀️User(id={self.id}, name='{self.name}', email='{self.email}', photo='{self.photo}')💁‍♀️"
 
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
 
 items_outfits = db.Table('items_outfits',
     db.Column('item_id', db.Integer, db.ForeignKey('items.id'), primary_key=True),
@@ -42,6 +45,15 @@ class Item(db.Model):
     def __repr__(self):
         return f"👚Item(id={self.id}, name='{self.name}', category='{self.category}', available='{self.available}', photo='{self.photo}', user_id={self.user_id})👚"
 
+    def as_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'category': self.category,
+            'available': self.available,
+            'photo': self.photo
+        }    
+
 
 dates_outfits = db.Table('dates_outfits',
     db.Column('date_id', db.Integer, db.ForeignKey('dates.id'), primary_key=True),
@@ -58,6 +70,12 @@ class Outfit(db.Model):
     def __repr__(self):
         return f"👗Item(id={self.id}, occasion='{self.occasion})'👗"
 
+    def as_dict(self):
+        return{
+            'id': self.id,
+            'occasion': self.occasion
+        }
+
 
 class Date(db.Model):
     __tablename__ = 'dates'
@@ -67,6 +85,12 @@ class Date(db.Model):
 
     def __repr__(self):
         return f"📅Item(id={self.id}, day='{self.day})'📅"
+
+    def as_dict(self):
+        return{
+            'id': self.id,
+            'day': self.day
+        }
 
 
 
