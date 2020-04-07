@@ -14,15 +14,22 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
+    password = db.Column(db.String, nullable=False)
     photo = db.Column(db.String(150))
 
     items = db.relationship('Item', backref='user', lazy=True)
 
     def __repr__(self):
-        return f"💁‍♀️User(id={self.id}, name='{self.name}', email='{self.email}', photo='{self.photo}')💁‍♀️"
+        return f"💁‍♀️User(id={self.id}, name='{self.name}', email='{self.email}', password='{self.password}, photo='{self.photo}')💁‍♀️"
 
     def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'password': self.password,
+            'photo': self.photo
+        }
 
 
 items_outfits = db.Table('items_outfits',
@@ -66,6 +73,8 @@ class Outfit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     occasion = db.Column(db.String(150))
     
+    items = db.relationship('Item', backref='outfits', secondary=items_outfits, lazy=True)
+
 
     def __repr__(self):
         return f"👗Item(id={self.id}, occasion='{self.occasion})'👗"
@@ -82,6 +91,8 @@ class Date(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     day = db.Column(db.String(150))
+
+    outfits = db.relationship('Outfit', backref='dates', secondary=dates_outfits, lazy=True)
 
     def __repr__(self):
         return f"📅Item(id={self.id}, day='{self.day})'📅"

@@ -12,6 +12,9 @@ def home():
   return jsonify(user=first_user.as_dict())
 
 
+@app.route('/login')
+
+
 @app.route('/items', methods=['GET', 'POST'])
 def item_index_create():
     if request.method == 'GET':
