@@ -1,20 +1,20 @@
+from flask import Blueprint, render_template
+from flask_login import login_required, current_user
 from models import User, Item, Outfit
-from app import app
 from flask import jsonify, request
 from crud.item_crud import get_all_items, create_item, get_item, update_item
 from crud.outfit_crud import get_all_outfits, create_outfit, get_outfit, update_outfit
 
+main = Blueprint('main', __name__)
 
+@main.route('/')
+def index():
+    return render_template('index.html')
 
-@app.route('/')
-def home():
-  first_user = User.query.first()
-  print(f'🎀{first_user}')
-  return jsonify(user=first_user.as_dict())
-
-
-@app.route('/login')
-
+@maim.route('/profile')
+def profile():
+    name = current_user.name
+    return render_template('profile.html' name=current_user.name)
 
 @app.route('/items', methods=['GET', 'POST'])
 def item_index_create():

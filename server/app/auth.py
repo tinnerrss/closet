@@ -1,92 +1,59 @@
-import functools
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
-from models import db
+from flask_login import login_user, logout_user, login_required
+from .models import User
+from . import db
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
+auth = Blueprint('auth', __name__)
 
-@bp.route('/register', methods=('GET', 'POST'))
-def register():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
-        
-        error = None
-
-        if not email:
-            error = 'Email is required.'
-        elif not password:
-            error = 'Password is required.'
-        elif db.execute(
-            'SELECT id FROM users WHERE name = ?', (name,)
-        ).fetchone() is not None:
-            error = 'User {} is already registered.'.format(name)
-
-        if error is None:
-            db.execute(
-                'INSERT INTO users (name,email, password) VALUES (?, ?, ?)',
-                (name, email, generate_password_hash(password))
-            )
-            db.commit()
-            return redirect(url_for('auth.login'))
-
-        flash(error)
-
-    return render_template('auth/register.html')
-
-
-@bp.route('/login', methods=('GET', 'POST'))
+@auth.route('/login')
 def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-        db = get_db()
-        error = None
-        user = db.execute(
-            'SELECT * FROM user WHERE email = ?', (email,)
-        ).fetchone()
-
-        if user is None:
-            error = 'Incorrect email.'
-        elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password.'
-
-        if error is None:
-            session.clear()
-            session['user_id'] = user['id']
-            return redirect(url_for('index'))
-
-        flash(error)
-
-    return render_template('auth/login.html')
+    return render_template('login.html')
 
 
-@bp.before_app_request
-def load_logged_in_user():
-    user_id = session.get('user_id')
+@auth.route('/login', method=['POST'])
+def login_post():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    remember = True if request.form.get('rememeber') else False
 
-    if user_id is None:
-        g.user = None
-    else:
-        g.user = get_db().execute(
-            'SELECT * FROM user WHERE id = ?', (user_id,)
-        ).fetchone()
+    user = User.query.filter_by(email=email).first()
+
+    if not user and not check_password_hash(user.password, password):
+        flash('Please check your login details and try again.')
+        return redirect(url_for('auth.login'))
+
+    login_user(user, remember=remember)
 
 
-@bp.route('/logout')
+    return redirect(url_for('main.profile'))
+
+@auth.route('/signup')
+def signup():
+    email = request.form.get('email')
+    name = request.form.get('name')
+    password = request.form.get('password')
+
+    user = User.query.filter_by(email=email).first()
+
+    if user:
+        flask('Email address already exists.')
+        return redirect(url_for('auth.login'))
+    
+    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+
+    db.session.add(new_user)
+    db.session.commit()
+
+
+    return redirect(url_for('auth.login'))
+
+@auth.route('/logout')
+@login_required
 def logout():
-    session.clear()
-    return redirect(url_for('index'))
+    logout_user()
+    return redirected(url_for('main.index'))
 
-def login_required(view):
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        if g.user is None:
-            return redirect(url_for('auth.login'))
 
-        return view(**kwargs)
-
-    return wrapped_view
