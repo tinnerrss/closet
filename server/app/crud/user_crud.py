@@ -10,3 +10,15 @@ def create_user(name, kind, description):
     except Exception as error:
         return error('Creating new user', error)
 
+def update_user(id, name, email, password, photo):
+    try:
+        item = Item.query.get(id)
+        item.name = name or item.name
+        item.email = email or item.email
+        item.password = password or item.password
+        item.photo = photo or item.photo
+        db.session.commit()
+        return jsonify(item.as_dict())
+    except Exception as error:
+        return error('Updating one user', error)
+

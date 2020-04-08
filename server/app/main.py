@@ -9,14 +9,14 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', token="hellloooooo")
 
 @maim.route('/profile')
 def profile():
     name = current_user.name
     return render_template('profile.html' name=current_user.name)
 
-@app.route('/items', methods=['GET', 'POST'])
+@main.route('/items', methods=['GET', 'POST'])
 def item_index_create():
     if request.method == 'GET':
         try:
@@ -29,7 +29,7 @@ def item_index_create():
         except Exception as error:
             return error('POST /item route', error)  
 
-@app.route('/items/<int:id>', methods=['GET', 'PUT', 'DELETE']) 
+@main.route('/items/<int:id>', methods=['GET', 'PUT', 'DELETE']) 
 def item_show_update_delete(id):
     if request.method == 'GET':
         try:
@@ -53,7 +53,7 @@ def item_show_update_delete(id):
         except Exception as error:
             return error('DELETE /items/:id route', error)
 
-@app.route('/outfits', methods=['GET', 'POST'])
+@main.route('/outfits', methods=['GET', 'POST'])
 def outfit_index_create():
     if request.method == 'GET':
         try:
@@ -66,7 +66,7 @@ def outfit_index_create():
         except Exception as error:
             return error('POST /outfit route', error)  
 
-@app.route('/outfits/<int:id>', methods=['GET', 'PUT', 'DELETE']) 
+@main.route('/outfits/<int:id>', methods=['GET', 'PUT', 'DELETE']) 
 def outfit_show_update_delete(id):
     if request.method == 'GET':
         try:
