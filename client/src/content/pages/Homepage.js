@@ -3,7 +3,7 @@ import Bigdisplay from '../components/Bigdisplay';
 
 function Homepage() {
     return(
-        <div className='bigimgbox'>
+        <div className='homepage'>
             <Bigdisplay />
         </div>
     )

@@ -1,21 +1,26 @@
 import React from "react"
+import { Link } from 'react-router-dom';
 
-function Nav() {
+function Nav(props) {
 
 
 
     return (
         <div className="nav">
             <div className="logobox">
-                <img src="./logo.png" className="logo"/>
-                <a href="" className="links">INSPIRATION</a>
-                <a href="" className="links">FAQ</a>
-                <a href="" className="links">ABOUT US</a>
+                <Link to="/" className="logo1"><img src="./logo.png" className="logo"/></Link>
                 
             </div>
+            <div>
+            <a href="" className="links">INSPIRATION</a>
+                <a href="" className="links">FAQ</a>
+                <a href="" className="links">ABOUT US</a>
+            </div>
             <div className="btnbox">
-                <a href="">LOG IN</a>
-                <button className="btn">TRY NOW FREE</button>
+                <Link to="/profile">PROFILE</Link>
+                <a href="" className="links">LOG IN</a>
+                <a href="" className="links">SIGN OUT</a>
+                <a href="/signup" className="links">TRY NOW FREE</a>
             </div>
         </div>
     )
