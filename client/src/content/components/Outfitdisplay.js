@@ -1,7 +1,28 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 
-function Outfitdisplay () {
+function Outfitdisplay (props) {
+    const [image, setImage] = useState('')
+    const [loading, setLoading] = useState(false)
+
+    const uploadImage = async e => {
+        const files = e.target.files
+        const data = new FormData()
+        data.append('file', files[0])
+        data.append('upload_preset', 'closet')
+        setLoading(true)
+        const res = await fetch('https://api.cloudinary.com/v1_1/tin/image/upload',
+            {
+                method: 'POST',
+                body: data
+            }
+        )
+        const file = await res.json()
+
+        setImage(file.secure_url)
+        setLoading(false)
+    }
+
     return (
         <div className="outfitdisplay">
             <div className="itemsnav">
@@ -15,7 +36,13 @@ function Outfitdisplay () {
             <Link to="/profile">Accessories</Link>
             </div>
             <div className="outfits">
-                CAROUSEL OF PREPICKED OUTFITS
+                <div className="uploader">
+                    <h1>Upload Image</h1>
+                    <input type="file" name="file" placeholder="upload image" onChange={uploadImage} />
+                </div>
+                <div className="displaycloudimg">
+                    {loading ? (<h3>Loading...</h3>) : (<img src={image}className="cloudimg" />)}
+                </div>
             </div>
         </div>
     )
