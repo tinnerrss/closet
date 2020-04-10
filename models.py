@@ -1,7 +1,21 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin
-from . import db
+from passlib.apps import custom_app_context as pwd_context
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from flask_cors import CORS
+
+
+app=Flask(__name__)
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/closet'
+app.config['SECRET_KEY'] = '8943ytgvhjbhifegy8rgu8wty4uiey'
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+
+db = SQLAlchemy(app)
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -18,13 +32,23 @@ class User(db.Model):
         return f"💁‍♀️User(id={self.id}, name='{self.name}', email='{self.email}', password='{self.password}, photo='{self.photo}')💁‍♀️"
 
     def as_dict(self):
-        return {
+        user_dict = {
             'id': self.id,
             'name': self.name,
             'email': self.email,
-            'password': self.password,
             'photo': self.photo
         }
+        return user_dict
+
+    def set_password(self, password):
+        self.password = pwd_context.encrypt(password)
+
+    def verify_password(self, typed_password):
+        return pwd_context.verify_password(typed_password, self.password)
+
+    def generate_token(self, expiration=60*10):
+        s = Serializer(app.config['SECRET_KEY'], expires_in=expiration)
+        return s.dumps({ 'id': self.id })
 
 
 items_outfits = db.Table('items_outfits',
@@ -98,6 +122,16 @@ class Date(db.Model):
             'day': self.day
         }
 
-
+def get_or_create(model, defaults=None, **kwargs):
+  instance = db.session.query(model).filter_by(**kwargs).first()
+  if instance:
+    return instance, False
+  else:
+    params = dict((k, v) for k, v in kwargs.items())
+    params.update(defaults or {})
+    instance = model(**params)
+    db.session.add(instance)
+    db.session.commit()
+    return instance, True
 
 

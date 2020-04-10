@@ -5,7 +5,7 @@ function Bigdisplay() {
         <div className="bigdisplay">
             <div className="adbox">
                 <div className="box1">
-                    <h1 className="title"><span className="popcolor1">Always Wondering</span> <span className="popcolor2">What To Wear?</span></h1>
+                    <h1 className="title"><span className="popcolor1">Always Wondering What To Wear?</span></h1>
                     <h3>Now you don't have to.</h3>
                     <button className="signupbtn">TRY NOW FREE</button>
                     <p>Already have an account? <a href="" className="popcolor3">Sign in here</a></p>

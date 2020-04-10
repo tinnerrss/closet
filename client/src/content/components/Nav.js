@@ -8,15 +8,15 @@ function Nav(props) {
     return (
         <div className="nav">
             <div className="logobox">
-                <Link to="/" className="logo1"><img src="./logo.png" className="logo"/></Link>
+                <Link to="/" className="logo1"><img src="./darklogo.png" className="logo"/></Link>
                 
             </div>
             <div class="dropdown">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png" className="menuicon" />
                 <div class="dropdown-content">
                 <Link to="/profile" className="dropnav">PROFILE</Link>
-                <Link to="/profile" className="dropnav">LOG IN</Link>
-                <Link to="/profile" className="dropnav">SIGN UP</Link>
+                <Link to="/auth/login" className="dropnav">LOG IN</Link>
+                <Link to="/auth/signup" className="dropnav">TRY NOW FREE</Link>
                 <Link to="/profile" className="dropnav">SIGN OUT</Link>
                 </div>
             </div>
@@ -26,10 +26,10 @@ function Nav(props) {
                 <a href="" className="links">ABOUT US</a>
             </div> */}
             <div className="btnbox">
+                <Link to="/authtest">TEST AUTH</Link>
                 <Link to="/profile">PROFILE</Link>
-                <a href="" className="links">LOG IN</a>
-                <a href="" className="links">SIGN OUT</a>
-                <a href="/signup" className="links">TRY NOW FREE</a>
+                <Link to="/auth/login">LOG IN</Link>
+                <Link to="/auth/signup">TRY NOW FREE</Link>
             </div>
         </div>
     )

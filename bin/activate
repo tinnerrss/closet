@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/thinh/Desktop/GA_SEI_29/unit4/project/closet"
+VIRTUAL_ENV="/Users/thinh/Desktop/GA_SEI_29/unit4/project/closetv2"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -54,8 +54,8 @@ fi
 
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
-    if [ "x(closet) " != x ] ; then
-	PS1="(closet) ${PS1:-}"
+    if [ "x(closetv2) " != x ] ; then
+	PS1="(closetv2) ${PS1:-}"
     else
     if [ "`basename \"$VIRTUAL_ENV\"`" = "__" ] ; then
         # special case for Aspen magic directories
