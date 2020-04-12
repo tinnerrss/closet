@@ -11,9 +11,9 @@ function Nav(props) {
                 <Link to="/" className="logo1"><img src="./darklogo.png" className="logo"/></Link>
                 
             </div>
-            <div class="dropdown">
+            <div className="dropdown">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png" className="menuicon" />
-                <div class="dropdown-content">
+                <div className="dropdown-content">
                 <Link to="/profile" className="dropnav">PROFILE</Link>
                 <Link to="/auth/login" className="dropnav">LOG IN</Link>
                 <Link to="/auth/signup" className="dropnav">TRY NOW FREE</Link>

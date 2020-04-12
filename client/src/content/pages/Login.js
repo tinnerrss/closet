@@ -28,20 +28,21 @@ function Login(props) {
                 <img src=""/>            
             </div>
             <div className="signform">
-                <h1>LOG IN</h1>
+                <h1> Welcome Back!</h1>
                 <form onSubmit={handleLoginSubmit}>
             <div>
-                <label>Email: </label>
-                <input type="text" name="email" onChange={e=>setEmail(e.target.value)} />
+                <input type="text" name="email" placeholder="Email" onChange={e=>setEmail(e.target.value)} />
             </div>
             <div>
-                <label>Password: </label>
-                <input type="password" onChange={e=>setPassword(e.target.value)} />
+                <input type="password" placeholder="Password" onChange={e=>setPassword(e.target.value)} />
             </div>
             <div>
                 <input type="submit" value="Login" />
             </div>
             </form>
+            </div>
+            <div className="formpicbox">
+                <img src="https://i.pinimg.com/originals/3c/49/c3/3c49c3e03241fab87453bad50e806ab8.jpg" className="formpic" />
             </div>
         </div>
     )
