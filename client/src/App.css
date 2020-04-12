@@ -55,7 +55,11 @@ a:hover {
   display: none;
 }
 
-
+.cta {
+  margin: 0;
+  border: 1px solid #fdc2b3;
+  padding: 10px;
+}
 /*-----------------------HOMEPAGE----------------------------*/
 .homepage {
   width: 100%;
@@ -65,15 +69,13 @@ a:hover {
 /*-----------------------LOGIN/SIGNUP----------------------------*/
 .signform {
   background-color: white;
-  color:black;
-  height: 500px;
-  width: 400px;   
-  align-self: flex-end;
-  margin: 50px auto;
+  /* border: 1px solid black; */
+  height: 450px;
+  width: 50%;   
+  /* align-self: flex-end; */
   text-align: center;
   border-radius: 4px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  padding: 30px;
+  /* padding: 30px; */
 }
 
 input[type=text], select, input[type=password] {
@@ -87,6 +89,22 @@ input[type=text], select, input[type=password] {
   background-color: #f3f3f3;
   font-size: 16px;
 }
+
+.signup {
+  display: flex;
+  /* border: 1px solid black; */
+  margin: 100px 150px 0px 150px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+
+.formpic {
+  width: 570px;
+  /* height: 5 */
+  border: 1px solid black;
+  margin: 0px;
+}
+
 
 
 
@@ -145,6 +163,7 @@ input[type=text], select, input[type=password] {
   font-weight: bold;
   background-color: white;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin: 15px;
 }
 
 .box2 {
@@ -225,7 +244,7 @@ input[type=text], select, input[type=password] {
 .inspopics {
   width: 290px;
   height: 400px;
-  margin-top: 30px;
+  margin: 30px 0px;
 }
 
 

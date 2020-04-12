@@ -17,7 +17,7 @@ function Nav(props) {
                 <Link to="/profile" className="dropnav">PROFILE</Link>
                 <Link to="/auth/login" className="dropnav">LOG IN</Link>
                 <Link to="/auth/signup" className="dropnav">TRY NOW FREE</Link>
-                <Link to="/profile" className="dropnav">SIGN OUT</Link>
+                {props.user ? <span onClick={props.logout}>Logout</span> : ''}
                 </div>
             </div>
             {/* <div className="navtest"> 
@@ -26,10 +26,10 @@ function Nav(props) {
                 <a href="" className="links">ABOUT US</a>
             </div> */}
             <div className="btnbox">
-                <Link to="/authtest">TEST AUTH</Link>
                 <Link to="/profile">PROFILE</Link>
                 <Link to="/auth/login">LOG IN</Link>
-                <Link to="/auth/signup">TRY NOW FREE</Link>
+                {props.user ? <span onClick={props.logout}>Logout</span> : ''}
+                <Link to="/auth/signup" className="cta">TRY NOW FREE</Link>
             </div>
         </div>
     )
