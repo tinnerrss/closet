@@ -1,15 +1,15 @@
 # Closet
 App allowing users to upload photos of items in their closet so they can know what’s clean and readily available and what’s not, taking away that extra hassle of deciding what to wear in the morning.
 
-<img src="./homepage.png" />
-<img src="./mobile.png" />
+<img src="client/public/homepage.png" />
+<img src="client/public/mobile.png" />
 
 ## User Story
 User looking for a way to look through their closet and plan out what they’ll wear throughout the week with the ease of a simple swipe. Being able to sort through your clothes by color, style, occasion quickly and being able to purge or know when something is in the wash or not without tearing up your entire room.
 
 ## Wireframes
-<img src="./wireframes.png" />
-<img src="./models.png" />
+<img src="client/public/wireframes.png" />
+<img src="client/public/models.png" />
 
 ## Proposed Architecture
 -Backend with Flask
