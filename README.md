@@ -12,9 +12,9 @@ User looking for a way to look through their closet and plan out what they’ll 
 <img src="client/public/models.png" />
 
 ## Proposed Architecture
--Backend with Flask
--Authentication - using oAuth in Python
--Frontend with HTML/CSS - utilizing key frames and animations, also want to make it mobile friendly
+- Backend with Flask
+- Authentication - using oAuth in Python
+- Frontend with HTML/CSS 
 
 ## MVP
 - Getting routes up with Flask
