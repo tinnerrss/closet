@@ -7,13 +7,13 @@ function Bigdisplay() {
                 <div className="box1">
                     <h1 className="title"><span className="popcolor1">Always Wondering What To Wear?</span></h1>
                     <h3>Now you don't have to.</h3>
-                    <button className="signupbtn">TRY NOW FREE</button>
+                    <button className="signupbtn"><a href="/auth/signup" className="trybtn" >TRY NOW FREE</a></button>
                     <p>Already have an account? <a href="" className="popcolor3">Sign in here</a></p>
 
                 </div>
                 <div className="iphone">
                     <img src="https://pngimg.com/uploads/iphone/iphone_PNG5735.png" className="phone1" />
-                    <img src="./test.png" className="phone2" />
+                    <img src="./phonescreen.png" className="phone2" />
                 </div>
                 <div className="box2">
                     <h1 className="shoutout">NOW AVAILABLE ON IOS AND ANDROID</h1>

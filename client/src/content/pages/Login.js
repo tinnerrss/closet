@@ -12,15 +12,16 @@ function Login(props) {
         e.preventDefault()
         axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/login`, { email, password })
         .then(response => {
-        if (response.data.mesage) {
-            props.setUserToken(null)
-        } else {
-            props.setUserToken({ user: response.data.user, token: response.data.token})
-        }
+            if (response.data.mesage) {
+                props.setUserToken(null)
+            } else {
+                console.log(response.data)
+                props.setUserToken({ user: response.data.user, token: response.data.token})
+            }
         }).catch(err=>console.log(err))
     }
 
-    if (props.user) return <Redirect to='/' />
+    if (props.user && props.token) return <Redirect to='/profile' />
 
     return (
         <div className="login">

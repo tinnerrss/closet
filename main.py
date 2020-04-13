@@ -36,6 +36,8 @@ def authenticate():
     raise KeyError('Email and Password required')
 
   user = User.query.filter_by(email=request.json['email']).first()
+  
+  print(user)
 
   if user is None or not user.verify_password(request.json['password']):
     raise Exception("Unauthorized")

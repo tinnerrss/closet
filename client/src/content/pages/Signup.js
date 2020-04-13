@@ -14,7 +14,7 @@ function Signup(props) {
 
         axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/signup`, payload)
         .then(response => {
-        if (response.data.mesage) {
+        if (response.data.message) {
             props.setUserToken(null)
         } else {
             props.setUserToken({ user: response.data.user, token: response.data.token})
@@ -22,7 +22,7 @@ function Signup(props) {
         }).catch(err=>console.log(err))
     }
 
-    if (props.user) return <Redirect to='/' />
+    if (props.user) return <Redirect to='/profile' />
 
     return (
         <div className="signup">

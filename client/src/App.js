@@ -13,6 +13,7 @@ function App() {
   const setUserToken = (responseData) => {
     if (responseData) {
       console.log("🐻")
+      console.log(responseData)
       setToken(responseData.token)
       setUser(responseData.user)
     } else {
@@ -27,7 +28,7 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <Nav />
+        <Nav logout={() => setUserToken(null)} user={user} />
         <Content user={user} token={token} setUserToken={setUserToken} updateUser={updateUser} />
       </div>
     </Router>

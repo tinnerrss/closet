@@ -14,10 +14,10 @@ function Nav(props) {
             <div className="dropdown">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png" className="menuicon" />
                 <div className="dropdown-content">
-                <Link to="/profile" className="dropnav">PROFILE</Link>
+                {props.user ? <Link to="/profile">PROFILE</Link>: ''}
                 <Link to="/auth/login" className="dropnav">LOG IN</Link>
                 <Link to="/auth/signup" className="dropnav">TRY NOW FREE</Link>
-                {props.user ? <span onClick={props.logout}>Logout</span> : ''}
+                {props.user ? <a href='/' onClick={props.logout}>LOG OUT</a> : ''}
                 </div>
             </div>
             {/* <div className="navtest"> 
@@ -26,9 +26,10 @@ function Nav(props) {
                 <a href="" className="links">ABOUT US</a>
             </div> */}
             <div className="btnbox">
-                <Link to="/profile">PROFILE</Link>
+                {props.user ? <span>'Hello' {props.user.name} </span>: ''}
+                {props.user ? <Link to="/profile">PROFILE</Link>: ''}
                 <Link to="/auth/login">LOG IN</Link>
-                {props.user ? <span onClick={props.logout}>Logout</span> : ''}
+                {props.user ? <a href='/' onClick={props.logout}>LOG OUT</a> : ''}
                 <Link to="/auth/signup" className="cta">TRY NOW FREE</Link>
             </div>
         </div>

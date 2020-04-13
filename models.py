@@ -44,7 +44,7 @@ class User(db.Model):
         self.password = pwd_context.encrypt(password)
 
     def verify_password(self, typed_password):
-        return pwd_context.verify_password(typed_password, self.password)
+        return pwd_context.verify(typed_password, self.password)
 
     def generate_token(self, expiration=60*10):
         s = Serializer(app.config['SECRET_KEY'], expires_in=expiration)
